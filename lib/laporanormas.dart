@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sinagaemas/ormas.dart';
 
-void main() => runApp(LaporanOrmas());
+void main() => runApp(const LaporanOrmas());
 
 /// This Widget is the main application widget.
 class LaporanOrmas extends StatelessWidget {
   static const String _title = 'Tabel Laporan Kegiatan Ormas';
+
+  const LaporanOrmas({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class LaporanOrmas extends StatelessWidget {
       title: _title,
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
-        body: MyStatelessWidget(),
+        body: const MyStatelessWidget(),
       ),
     );
   }
@@ -21,6 +23,8 @@ class LaporanOrmas extends StatelessWidget {
 
 /// This is the stateless widget that the main application instantiates.
 class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({super.key});
+
   // MyStatelessWidget({Key key}) : super(key: key);
 
   @override
@@ -32,7 +36,7 @@ class MyStatelessWidget extends StatelessWidget {
           // Navigator.of(context).push(
           //   MaterialPageRoute(builder: (context) => DashboardPage(id: 0, tanggal: '', fullname: '', email: '', username: '', role: '', status: '', token: '',))
           //   );
-          },
+        },
         backgroundColor: Colors.yellow[400],
         child: const Icon(Icons.home),
       ),
@@ -56,7 +60,7 @@ class MyStatelessWidget extends StatelessWidget {
                 // Navigator.of(context).push(
                 //   MaterialPageRoute(builder: (context) => Profil(fullname: '${this.widget.fullname}', email: '${this.widget.email}', username: '${this.widget.username}'))
                 //   );
-                },
+              },
             ),
             IconButton(
               icon: const Icon(
@@ -64,10 +68,10 @@ class MyStatelessWidget extends StatelessWidget {
                 color: Colors.black,
               ),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => Ormas())
-                  );
-                },
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(builder: (context) => Ormas())
+                //   );
+              },
             ),
             IconButton(
               icon: const Icon(
@@ -118,7 +122,6 @@ class MyStatelessWidget extends StatelessWidget {
                 // style: TextStyle(fontStyle: FontStyle.italic),
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-
             ),
             DataColumn(
               label: Text(
@@ -126,30 +129,28 @@ class MyStatelessWidget extends StatelessWidget {
                 // style: TextStyle(fontStyle: FontStyle.italic),
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-
             ),
           ],
           rows: [
             DataRow(
               cells: <DataCell>[
-                DataCell(Text('20 Desember 2023')),
-                DataCell(Text('Dummy Judul')),
-                DataCell(Text('Dummy Deskripsi')),
-                DataCell(Text('dummy.file')),
+                const DataCell(Text('20 Desember 2023')),
+                const DataCell(Text('Dummy Judul')),
+                const DataCell(Text('Dummy Deskripsi')),
+                const DataCell(Text('dummy.file')),
                 DataCell(
-                  Container(
+                  SizedBox(
                     width: 84,
                     height: 45,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xFF00E676),
+                        backgroundColor: const Color(0xFF00E676),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      onPressed: () {
-                      },
-                      child: Wrap(
+                      onPressed: () {},
+                      child: const Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Icon(Icons.picture_as_pdf_sharp),
