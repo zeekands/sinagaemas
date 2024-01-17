@@ -88,6 +88,7 @@ class _DashboardPageState extends State<DashboardPage> {
       setState(() {
         if (thisOrmas.isNotEmpty) {
           dataOrmas = thisOrmas.first;
+          isLoading = false;
         } else {
           dataOrmas = null;
           isLoading = false;
