@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Si Naga Emas Mobile"),
+          title: const Text("Si Naga Emas Mobile"),
           backgroundColor: Colors.yellow,
         ),
         body: PageView(
