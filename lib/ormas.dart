@@ -249,7 +249,8 @@ class _OrmasState extends State<Ormas> {
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => ViewPDFOnNewPage(
-                              url: widget.item.skKemenkumham,
+                              url:
+                                  "http://sinagaemas.primasoft.co.id/uploadpdf/skkemenkumham/${widget.item.skKemenkumham}",
                               title: 'SKT / SK Kemenkumham')));
                     },
                     icon: const Icon(Icons.remove_red_eye)),

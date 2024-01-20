@@ -17,7 +17,7 @@ class ViewPDFOnNewPage extends StatelessWidget {
           elevation: 0,
         ),
         body: const PDF().cachedFromUrl(
-          'http://sinagaemas.primasoft.co.id/uploadpdf/skkemenkumham/$url',
+          url,
           placeholder: (progress) => Center(child: Text('$progress %')),
           errorWidget: (error) => Center(child: Text(error.toString())),
         ));

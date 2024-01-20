@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
+import 'package:sinagaemas/services/di_service.dart';
+import 'package:sinagaemas/services/network_services.dart';
 
 import 'depan.dart';
 import 'login_page.dart';
 import 'register.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
+  httpService.setBaseUrl('http://sinagaemas.primasoft.co.id/api');
 
   runApp(MyApp());
 }

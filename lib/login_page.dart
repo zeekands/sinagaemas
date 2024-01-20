@@ -5,12 +5,15 @@ import 'package:http/http.dart' as http;
 import 'package:quickalert/quickalert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sinagaemas/register.dart';
+import 'package:sinagaemas/services/di_service.dart';
+import 'package:sinagaemas/services/network_services.dart';
 
 import 'dashboard_page.dart';
 
-void main() => runApp(LoginApp());
+void main() => runApp(const LoginApp());
 
 class LoginApp extends StatelessWidget {
+  const LoginApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class LoginApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
@@ -35,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> login(String email, String password) async {
-    final apiUrl = 'http://sinagaemas.primasoft.co.id/api/login';
+    const apiUrl = 'http://sinagaemas.primasoft.co.id/api/login';
 
     final response = await http.post(Uri.parse(apiUrl), body: {
       'email': email,
@@ -50,8 +53,9 @@ class _LoginPageState extends State<LoginPage> {
       final user = json.decode(response.body)['user'];
 
       //menyimpan data token
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', token);
+      prefs.setString('token', token);
+      prefs.setInt('idUser', user['id']);
+      httpService.setBearer(token);
 
       //berpindah halaman
       Navigator.pushAndRemoveUntil(
@@ -70,9 +74,8 @@ class _LoginPageState extends State<LoginPage> {
             token: token,
           ),
         ),
-            (route) => false,
+        (route) => false,
       );
-
     } else {
       // Notifikasi Quick Alert
       QuickAlert.show(
@@ -89,9 +92,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text("Login")
-      ),
+      appBar: AppBar(title: const Text("Login")),
       body: Column(
         children: [
           // Center(
@@ -113,12 +114,12 @@ class _LoginPageState extends State<LoginPage> {
           // ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
+                  const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -140,38 +141,38 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.symmetric(
                         vertical:
-                        16, // Ubah ukuran vertikal sesuai keinginan Anda
+                            16, // Ubah ukuran vertikal sesuai keinginan Anda
                         horizontal:
-                        10, // Ubah ukuran horizontal sesuai keinginan Anda
+                            10, // Ubah ukuran horizontal sesuai keinginan Anda
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     obscureText: true,
                     controller: passwordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.symmetric(
                         vertical:
-                        16, // Ubah ukuran vertikal sesuai keinginan Anda
+                            16, // Ubah ukuran vertikal sesuai keinginan Anda
                         horizontal:
-                        10, // Ubah ukuran horizontal sesuai keinginan Anda
+                            10, // Ubah ukuran horizontal sesuai keinginan Anda
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.end,
                   //   children: [
@@ -192,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         login(emailController.text, passwordController.text);
                       },
-                      child: Text('Login'),
+                      child: const Text('Login'),
                     ),
                   ),
                   Align(
@@ -205,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               'Belum punya akun?',
                               style: TextStyle(
                                 fontSize: 16,
@@ -213,11 +214,11 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             MaterialButton(
                               onPressed: () {
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => Register())
-                                );
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const Register()));
                               },
-                              child: Text('Register',
+                              child: const Text(
+                                'Register',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.blue,
@@ -233,17 +234,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.bottomCenter,
             child: FractionallySizedBox(
               widthFactor: 0.8,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: EdgeInsets.only(bottom: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  ],
+                  children: [],
                 ),
               ),
             ),

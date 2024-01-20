@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:sinagaemas/modules/laporan_kegiatan/controller/laoran_kegiatan_controller.dart';
 import 'package:sinagaemas/ormas.dart';
 
 void main() => runApp(const LaporanOrmas());
