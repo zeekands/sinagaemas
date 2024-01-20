@@ -18,11 +18,10 @@ class DashboardController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    Future.wait([
-      getOrmas(),
-      getSkkkoData(),
-      getOrmasVerification(),
-    ]);
+
+    await getOrmas();
+    await getSkkkoData();
+    await getOrmasVerification();
   }
 
   Future<void> getOrmas() async {

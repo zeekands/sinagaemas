@@ -18,18 +18,17 @@ class HttpService {
 
   HttpService._internal();
 
-  final Dio _dio = Dio();
-  // ..interceptors.add(PrettyDioLogger(
-  //   requestHeader: true,
-  //   requestBody: true,
-  //   responseBody: true,
-  //   responseHeader: false,
-  //   error: true,
-  //   compact: true,
-  //   maxWidth: 120,
-  //   logPrint: (object) => debugPrint(object.toString()),
-  // )
-  //);
+  final Dio _dio = Dio()
+    ..interceptors.add(PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 120,
+      logPrint: (object) => debugPrint(object.toString()),
+    ));
   String _baseUrl = "http://sinagaemas.primasoft.co.id/api";
 
   String get baseUrl => _baseUrl;

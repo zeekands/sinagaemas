@@ -234,7 +234,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   );
                 }
               case StatusState.error:
-                return Text(state.message);
+                return const Center(child: Text("Data Tidak Ditemukan!"));
             }
           },
         ),
